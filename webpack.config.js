@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
 
@@ -15,7 +16,7 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-         exclude: [
+        exclude: [
           path.resolve(__dirname, 'node_modules')
         ],
         options: {
@@ -24,7 +25,10 @@ module.exports = {
       },
       {
         test: /\.styl$/,
-        loader: 'stylus-loader'
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader', 'stylus-loader']
+        })
       },
       {
         test: /\.pug$/,
@@ -33,9 +37,16 @@ module.exports = {
     ]
   },
 
+  resolve: {
+    extensions: ['.js', '.styl']
+  },
+
   plugins: [
     new HtmlWebpackPlugin({
       template: 'src/index.pug'
+    }),
+    new ExtractTextPlugin({
+      filename: 'index.css'
     })
   ]
 };
