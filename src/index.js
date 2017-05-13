@@ -54,8 +54,6 @@ $(function() {
     compiled = atSubstitution(compiled);
     compiled = hashSubstitution(compiled);
 
-    console.log(compiled);
-
     // add to the DOM
     $('.js-output').html(compiled);
   }
