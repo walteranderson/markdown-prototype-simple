@@ -1,8 +1,10 @@
 import $ from 'jquery';
 import 'at.js';
+import 'at.css';
 import 'jquery.caret';
 import marked from 'marked';
 import _ from 'lodash';
+
 import './index.styl';
 
 $(function() {
@@ -41,7 +43,6 @@ $(function() {
 
   function compileMarkdown() {
     var input = $('.js-input').val();
-    console.log(input);
     if (!input) {
       return;
     }

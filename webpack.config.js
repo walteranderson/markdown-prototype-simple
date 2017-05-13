@@ -31,6 +31,13 @@ module.exports = {
         })
       },
       {
+        test: /\.css$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: 'css-loader'
+        })
+      },
+      {
         test: /\.pug$/,
         loader: 'pug-loader'
       }
@@ -38,7 +45,10 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['.js', '.styl']
+    extensions: ['.js', '.styl'],
+    alias: {
+      'at.css': path.resolve(__dirname, 'node_modules/at.js/dist/css/jquery.atwho.css')
+    }
   },
 
   plugins: [
